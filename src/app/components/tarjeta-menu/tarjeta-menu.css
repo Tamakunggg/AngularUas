@@ -1,0 +1,25 @@
+.tarjeta{
+
+    width: 220px;
+    height: 130px;
+
+    background-color: #1e293b;
+    color: white;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.tarjeta:hover{
+
+    transform: scale(1.05);
+
+}

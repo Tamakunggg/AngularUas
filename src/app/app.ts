@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './services/api.service';
+import { TarjetaMenu } from './components/tarjeta-menu/tarjeta-menu';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TarjetaMenu],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
