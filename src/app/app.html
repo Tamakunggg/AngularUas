@@ -1,13 +1,72 @@
-<h1>Control de Gastos</h1>
+<div class="contenedor-principal">
 
-<div class="contenedor">
+    <div class="header">
 
-    <app-tarjeta-menu
-        texto="Gastos">
-    </app-tarjeta-menu>
+        <h1>Control de Gastos</h1>
 
-    <app-tarjeta-menu
-        texto="Ingresos">
-    </app-tarjeta-menu>
+    </div>
+
+
+    <div class="contenedor-botones">
+
+        <app-tarjeta-menu
+            texto="Gastos"
+            (clickTarjeta)="mostrarGastos()">
+        </app-tarjeta-menu>
+
+        <app-tarjeta-menu
+            texto="Ingresos"
+            (clickTarjeta)="mostrarIngresos()">
+        </app-tarjeta-menu>
+
+    </div>
+
+
+    <div class="contenedor-tabla">
+
+        <h2>{{ tituloTabla }}</h2>
+
+
+        <div class="skeleton-tabla" *ngIf="cargando">
+
+            <div class="skeleton-header"></div>
+
+            <div class="skeleton-fila"></div>
+            <div class="skeleton-fila"></div>
+            <div class="skeleton-fila"></div>
+            <div class="skeleton-fila"></div>
+
+        </div>
+
+
+        <table *ngIf="datos.length > 0 && !cargando">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Concepto</th>
+                    <th>Cantidad</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let item of datos">
+
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.concepto }}</td>
+                    <td>${{ item.cantidad }}</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-menu',
@@ -9,5 +9,13 @@ import { Component, Input } from '@angular/core';
 export class TarjetaMenu {
 
   @Input() texto : string = '';
+
+  @Output() clickTarjeta = new EventEmitter();
+
+  seleccionar(){
+
+    this.clickTarjeta.emit();
+
+  }
 
 }

@@ -6,12 +6,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/mensaje';
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
 
-  obtenerMensaje() {
-    return this.http.get(this.apiUrl);
+  obtenerGastos(){
+
+    return this.http.get(`${this.apiUrl}/gastos`);
+
+  }
+
+  obtenerIngresos(){
+
+    return this.http.get(`${this.apiUrl}/ingresos`);
+
   }
 
 }

@@ -1,47 +1,60 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from './services/api.service';
+
 import { TarjetaMenu } from './components/tarjeta-menu/tarjeta-menu';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [CommonModule, TarjetaMenu],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App implements OnInit {
+export class App {
 
-  mensaje: string = '';
+  datos : any[] = [];
+
+  tituloTabla : string = '';
+
+  cargando : boolean = false;
 
   constructor(
-    private apiService: ApiService,
-    private cdr: ChangeDetectorRef
-  ) {}
+    private api : ApiService,
+    private cd : ChangeDetectorRef
+  ){}
 
-  ngOnInit(): void {
+  mostrarGastos(){
 
-    this.apiService.obtenerMensaje().subscribe({
+    this.tituloTabla = 'Gastos';
 
-      next: (respuesta: any) => {
+    this.cargando = true;
 
-        console.log(respuesta);
+    this.api.obtenerGastos().subscribe((respuesta : any) => {
 
-        this.mensaje = respuesta.mensaje;
+      this.datos = respuesta;
 
-        this.cdr.detectChanges();
+      this.cargando = false;
 
-      },
+      this.cd.detectChanges();
 
-      error: (error) => {
+    });
 
-        console.error(error);
+  }
 
-        this.mensaje = 'ERROR AL CONECTAR CON LARAVEL';
 
-        this.cdr.detectChanges();
+  mostrarIngresos(){
 
-      }
+    this.tituloTabla = 'Ingresos';
+
+    this.cargando = true;
+
+    this.api.obtenerIngresos().subscribe((respuesta : any) => {
+
+      this.datos = respuesta;
+
+      this.cargando = false;
+
+      this.cd.detectChanges();
 
     });
 
