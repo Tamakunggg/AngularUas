@@ -1,6 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TarjetaMenu } from './components/tarjeta-menu/tarjeta-menu';
 import { ApiService } from './services/api.service';
 
@@ -13,9 +12,7 @@ import { ApiService } from './services/api.service';
 export class App {
 
   datos : any[] = [];
-
   tituloTabla : string = '';
-
   cargando : boolean = false;
 
   constructor(
@@ -24,17 +21,11 @@ export class App {
   ){}
 
   mostrarGastos(){
-
     this.tituloTabla = 'Gastos';
-
     this.cargando = true;
-
     this.api.obtenerGastos().subscribe((respuesta : any) => {
-
       this.datos = respuesta;
-
       this.cargando = false;
-
       this.cd.detectChanges();
 
     });
@@ -43,21 +34,13 @@ export class App {
 
 
   mostrarIngresos(){
-
     this.tituloTabla = 'Ingresos';
-
     this.cargando = true;
-
     this.api.obtenerIngresos().subscribe((respuesta : any) => {
-
       this.datos = respuesta;
-
       this.cargando = false;
-
       this.cd.detectChanges();
-
     });
-
   }
 
 }
